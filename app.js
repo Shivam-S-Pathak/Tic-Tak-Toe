@@ -21,18 +21,27 @@ let winPattern = [
 
 boxes.forEach((box) => {
     box.addEventListener('click', () => {
-        console.log("box was clicked");
         if (trunO) {
 
             box.innerText = "O";
             trunO = false;
             document.body.style.backgroundColor = "rgb(248, 118, 118)";
             chance.innerText = "X's turn";
+            document.querySelector(".player2").style.height = "30vmin";
+            document.querySelector(".player2").style.width = "30vmin";
+            document.querySelector(".player1").style.height = "20vmin";
+            document.querySelector(".player1").style.width = "20vmin";
+            resetBtn.disabled = false;
         } else {
             box.innerText = "X";
             trunO = true;
             document.body.style.backgroundColor = "rgb(79, 176, 245)";
             chance.innerText = "O's turn";
+            document.querySelector(".player1").style.height = "30vmin";
+            document.querySelector(".player1").style.width = "30vmin";
+            document.querySelector(".player2").style.height = "20vmin";
+            document.querySelector(".player2").style.width = "20vmin";
+
 
         }
         box.disabled = true;
@@ -45,9 +54,14 @@ newGame.addEventListener('click', () => {
         box.disabled = false;
         box.innerText = "";
     }
-    msgbox.style.display="none";
+    msgbox.style.visibility = "hidden";
+    msgbox.style.opacity = "0";
     document.body.style.backgroundColor = "rgb(79, 176, 245)";
     chance.innerText = "O's turn";
+    document.querySelector(".player1").style.height = "30vmin";
+    document.querySelector(".player1").style.width = "30vmin";
+    document.querySelector(".player2").style.height = "20vmin";
+    document.querySelector(".player2").style.width = "20vmin";
 
 });
 
@@ -57,30 +71,37 @@ resetBtn.addEventListener('click', () => {
         box.disabled = false;
         box.innerText = "";
     }
-    msgbox.style.display="none";
+    msgbox.style.visibility = "hidden";
+    msgbox.style.opacity = "0";
     document.body.style.backgroundColor = "rgb(79, 176, 245)";
     chance.innerText = "O's turn";
+    document.querySelector(".player1").style.height = "30vmin";
+    document.querySelector(".player1").style.width = "30vmin";
+    document.querySelector(".player2").style.height = "20vmin";
+    document.querySelector(".player2").style.width = "20vmin";
 
 });
 
 const checkWinner = () => {
     for (pattern of winPattern) {
-        // console.log(pattern[0], pattern[1], pattern[2]);
-        // // console.log(boxes[pattern[0]], boxes[pattern[1]], boxes[pattern[2]]);
-        // console.log(boxes[pattern[0]].innerText , boxes[pattern[1]].innerText, boxes[pattern[2]].innerText);
 
         let position1 = boxes[pattern[0]].innerText;
         let position2 = boxes[pattern[1]].innerText;
         let position3 = boxes[pattern[2]].innerText;
         if (position1 != "" && position2 != "" && position3 != "") {
             if (position1 === position2 && position2 === position3) {
-                console.log(position1 + " is Winner");
-                msg.innerText = " Congrats player '" + position1 + "' you won!!";
-                msgbox.style.display="flex";
+                msg.innerText = " Congratulations player '" + position1 + "' you won!!";
                 chance.innerText = "";
                 for (let box of boxes) {
                     box.disabled = true;
                 }
+                resetBtn.disabled = true;
+                document.querySelector(".player1").style.height = "20vmin";
+                document.querySelector(".player1").style.width = "20vmin";
+                document.querySelector(".player2").style.height = "20vmin";
+                document.querySelector(".player2").style.width = "20vmin";
+                msgbox.style.visibility = "visible";
+                msgbox.style.opacity = "1";
 
             }
         }
