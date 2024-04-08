@@ -6,7 +6,9 @@ let container = document.querySelector(".container");
 let newGame = document.querySelector(".newgame");
 let chance = document.querySelector(".turn");
 
+
 let trunO = true;
+let count =0;
 
 let winPattern = [
     [0, 1, 2],
@@ -32,6 +34,7 @@ boxes.forEach((box) => {
             document.querySelector(".player1").style.height = "20vmin";
             document.querySelector(".player1").style.width = "20vmin";
             resetBtn.disabled = false;
+            count++;
         } else {
             box.innerText = "X";
             trunO = true;
@@ -41,7 +44,7 @@ boxes.forEach((box) => {
             document.querySelector(".player1").style.width = "30vmin";
             document.querySelector(".player2").style.height = "20vmin";
             document.querySelector(".player2").style.width = "20vmin";
-
+            count++;
 
         }
         box.disabled = true;
@@ -54,6 +57,7 @@ newGame.addEventListener('click', () => {
         box.disabled = false;
         box.innerText = "";
     }
+    count=0;
     msgbox.style.visibility = "hidden";
     msgbox.style.opacity = "0";
     document.body.style.backgroundColor = "rgb(79, 176, 245)";
@@ -71,6 +75,7 @@ resetBtn.addEventListener('click', () => {
         box.disabled = false;
         box.innerText = "";
     }
+    count=0;
     msgbox.style.visibility = "hidden";
     msgbox.style.opacity = "0";
     document.body.style.backgroundColor = "rgb(79, 176, 245)";
@@ -96,6 +101,17 @@ const checkWinner = () => {
                     box.disabled = true;
                 }
                 resetBtn.disabled = true;
+                document.querySelector(".player1").style.height = "20vmin";
+                document.querySelector(".player1").style.width = "20vmin";
+                document.querySelector(".player2").style.height = "20vmin";
+                document.querySelector(".player2").style.width = "20vmin";
+                msgbox.style.visibility = "visible";
+                msgbox.style.opacity = "1";
+
+            }
+            if (count===9 && position1 !== position2 && position2 !== position3){
+                msg.innerText = " oohh!! Match Draw ";
+                chance.innerText = "";
                 document.querySelector(".player1").style.height = "20vmin";
                 document.querySelector(".player1").style.width = "20vmin";
                 document.querySelector(".player2").style.height = "20vmin";
