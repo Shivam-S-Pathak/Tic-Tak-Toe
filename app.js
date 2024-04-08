@@ -95,6 +95,7 @@ const checkWinner = () => {
         let position3 = boxes[pattern[2]].innerText;
         if (position1 != "" && position2 != "" && position3 != "") {
             if (position1 === position2 && position2 === position3) {
+                count--;
                 msg.innerText = " Congratulations player '" + position1 + "' you won!!";
                 chance.innerText = "";
                 for (let box of boxes) {
@@ -109,7 +110,7 @@ const checkWinner = () => {
                 msgbox.style.opacity = "1";
 
             }
-            if (count===9 && position1 !== position2 && position2 !== position3){
+            else if (count===9){
                 msg.innerText = " oohh!! Match Draw ";
                 chance.innerText = "";
                 document.querySelector(".player1").style.height = "20vmin";
